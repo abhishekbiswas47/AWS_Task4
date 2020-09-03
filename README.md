@@ -189,7 +189,7 @@ Performing the following steps:
        vpc_security_group_ids = [ aws_security_group.task4.id]
        key_name = "abhishek1234"
     tags = { 
-             Name = "anios"
+             Name = "abhios"
          }
     }
 
