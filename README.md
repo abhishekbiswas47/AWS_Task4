@@ -208,3 +208,10 @@ Performing the following steps:
              Name = "abhios"
          }
     }
+To use our terraform code first we have to initialize it by using this command-:
+
+    terraform init
+
+After that we have to run this command and the terraform will perform the task.
+
+    terraform apply --auto-approve
