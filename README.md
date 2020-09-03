@@ -119,3 +119,23 @@ Performing the following steps:
     }
     
     }
+#### Step 10:
+##### Creating a Route Table with CIDR block 0.0.0.0/0 to connect any ip and attaching it to NAT Gateway.
+
+    resource "aws_route_table" "route_2"{
+      vpc_id = aws_vpc.myvpc.id
+    
+    route {
+    
+        cidr_block = "0.0.0.0/0"
+        nat_gateway_id = aws_nat_gateway.aninat1.id
+      }
+    
+    depends_on = [
+        aws_vpc.myvpc
+      ]
+    
+    tags = {
+        Name = "route_2"
+      }
+    }
