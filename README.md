@@ -94,7 +94,7 @@ Performing the following steps:
       route_table_id = aws_route_table.route.id
      }
 #### Step 6: 
-#####Connecting Routing Table to Public Subnet
+##### Connecting Routing Table to Public Subnet
 
     resource "aws_route_table_association" "subnet_assosiate" {
       subnet_id      = aws_subnet.public.id
