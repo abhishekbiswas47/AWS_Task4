@@ -100,3 +100,9 @@ Performing the following steps:
       subnet_id      = aws_subnet.public.id
       route_table_id = aws_route_table.route.id
     }
+#### Step 8: 
+##### Creating a Elastic IP for the AWS VPC.
+
+    resource “aws_eip” “abhi_eip”{
+     vpc = true 
+    }
