@@ -106,3 +106,16 @@ Performing the following steps:
     resource “aws_eip” “abhi_eip”{
      vpc = true 
     }
+#### Step 8:
+##### Creating a NAT gateway and allocate the elastic ip to it and put it in public subnet.
+
+    resource “aws_nat_gateway” “abhinat1”{
+     allocation_id = aws_eip.abhi_eip.id
+     subnet_id = aws_subnet.public.id
+    
+    tags = {
+     Name = “abhinat1”
+ 
+    }
+    
+    }
