@@ -119,7 +119,7 @@ Performing the following steps:
     }
     
     }
-#### Step 10:
+#### Step 9:
 ##### Creating a Route Table with CIDR block 0.0.0.0/0 to connect any ip and attaching it to NAT Gateway.
 
     resource "aws_route_table" "route_2"{
