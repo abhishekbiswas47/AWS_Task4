@@ -139,3 +139,72 @@ Performing the following steps:
         Name = "route_2"
       }
     }
+#### Step 10:
+##### Now create Associate route table in PRIVATE SUBNET.
+
+    resource “aws_route_table_association” “subnet_associate2”{
+     subnet_id = aws_subnet.private.id
+     route_table_id = aws_route_table.route_2.id
+
+
+#### Step 11:
+##### Creating a Security Group which allows port 80 for http and 22 for ssh in inbound rule and allows all port in outbound rule.
+
+    resource "aws_security_group" "tsk4" {
+      name        = "task4"
+      description = "Allow inbound traffic"
+      vpc_id      = aws_vpc.myvpc.id
+    ingress {
+        from_port   = 80
+        to_port     = 80
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+      }
+    tags = {
+        Name = "task4"
+      }
+    }
+
+
+#### Step 12:
+##### Write a terraform code to Launch an ec2 instance which has Wordpress setup.
+
+    resource "aws_instance" "wordpress" {
+       ami = "ami-004a955bfb611bf13"
+       instance_type = "t2.micro"
+       associate_public_ip_address = true
+       subnet_id = aws_subnet.public.id
+       vpc_security_group_ids = [ aws_security_group.task4.id]
+       key_name = "abhishek1234"
+    tags = { 
+             Name = "anios"
+         }
+    }
+
+
+#### Step 13:
+##### Write a terraform code to Launch an ec2 instance which has mysql setup.
+
+    resource "aws_instance" "mysql" {
+       ami = "ami-004a955bfb611bf13"
+       instance_type = "t2.micro"
+       associate_public_ip_address = true
+       subnet_id = aws_subnet.public.id
+       vpc_security_group_ids = [ aws_security_group.task4.id]
+       key_name = "abhishek1234"
+    tags = { 
+             Name = "abhios"
+         }
+    }
